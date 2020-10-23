@@ -27,15 +27,15 @@
 
 ## 打开编辑器
 
-![%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled.png](%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled.png)
+![0](/Users/vajorstack/Downloads/0.png)
 
 ## 第一个界面（可以放置战役效果图）
 
 > 修改战役的时候背景图可以随之更改
 
-![%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled%201.png](%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled%201.png)
 
-![%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled%202.png](%E4%B8%96%E7%95%8C%E5%BE%81%E6%9C%8D%E8%80%85%E4%BA%8C%E7%BC%96%E8%BE%91%E5%99%A8(ing)%20013e0abb69ec4c13a7863927b692b5db/Untitled%202.png)
+
+
 
 ## 选择战斗方（点击模式/关卡任何一个弹出下面窗口）
 
