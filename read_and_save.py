@@ -4,9 +4,7 @@ from all_dic import *
 
 def read(name,number_id=1):
     filename=r"/Applications/World Conqueror 2.app/Contents/Resources/"+name
-    print('this is reading')
-    # print(number_id)
-    # print(filename)
+    print('this is reading : '+filename+' number_id=%s'%number_id)
     tree = et.parse(filename)
 
     root = tree.getroot()
@@ -22,13 +20,12 @@ def read(name,number_id=1):
 
         return country_list[0].attrib
     else:
-        print(country_list[number_id].attrib)
+        # print(country_list[number_id].attrib)
         return country_list[number_id].attrib
 
 def read_contrylist(name='battle_allies1.xml'):
     filename=r"/Applications/World Conqueror 2.app/Contents/Resources/"+name
-    print('this is reading')
-    print(filename)
+    print('this is reading : '+filename)
 
     tree = et.parse(filename)
 
@@ -37,8 +34,6 @@ def read_contrylist(name='battle_allies1.xml'):
     # print(root.attrib)
     nodes_list = root.findall('list')
     country_list=nodes_list[0]
-    area_list=nodes_list[1]
-    dialog_list=nodes_list[2]
     # print(area_list)
     # print(country_list[number_id].attrib)
     # print(len(country_list))
@@ -49,21 +44,14 @@ def read_contrylist(name='battle_allies1.xml'):
             if k == 'a' or k=='b' or k=='g' or k=='r':
                 new_dic[k]=v
             if k == 'id':
-                # print(v)
-                # print(type(v))
                 temp=id_reverser_dic[v]
         all_dic[temp]=new_dic
-    # print(all_dic)
-
-
-    return country_list
+    return all_dic.keys()
 
 def read_orignal_contrylist(name='battle_axis10.xml'):
 
     filename = r"/Users/vajorstack/PycharmProjects/qt_wc/battle/" + name
-    print('this is reading')
-    print(filename)
-
+    print('this is reading '+'read_orignal_countrylist'+filename)
     tree = et.parse(filename)
 
     root = tree.getroot()
@@ -96,10 +84,8 @@ def read_orignal_contrylist(name='battle_axis10.xml'):
 
 def save(dict_get,name,nameid):
     filename=r"/Applications/World Conqueror 2.app/Contents/Resources/"+name
-    print('this is saving')
-    print(filename)
+    print('this is saving : '+filename+' number_id=%s'%nameid)
     tree = et.parse(filename)
-    print(dict_get)
     root = tree.getroot()
     # print(root.tag)
     # print(root.attrib)
@@ -114,10 +100,6 @@ def save(dict_get,name,nameid):
     reparsed = minidom.parseString(rough_str)
     new_str = reparsed.toprettyxml(indent='\t')
     tree.write(filename, )
-
-
-
-
 
 
 def test():
@@ -186,7 +168,7 @@ def test():
     tree.write('./s.xml',)
 
 if __name__=='__main__':
-    print(id_reverser_dic)
+    print(read_contrylist().attrib,'sssss')
     read_orignal_contrylist()
 
 

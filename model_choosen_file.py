@@ -1,4 +1,4 @@
-from info import info_window
+
 from PySide2.QtGui import QPainter, QBrush, QColor,QPixmap,QPalette
 import os
 from all_dic import *
@@ -12,7 +12,6 @@ class model_choosen(QWidget):
     def __init__(self,parent=None,delete_widget=None):
         super().__init__(parent)
         self.type = 'battle_axis'
-        self.flag = False
         self.delete_mainwidget=delete_widget
         self.layout_one =None
         self.delete_widget = None
@@ -75,8 +74,6 @@ class model_choosen(QWidget):
 
     def change_img(self):
         if os.path.exists(self.file_name[:-3]+'jpg'):
-            # self.layout.removeWidget(self.label_img)
-            # self.label_img.close()
             print('change_img')
             self.image = QPixmap(self.file_name[:-3]+'jpg')
 

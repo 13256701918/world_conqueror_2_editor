@@ -12,14 +12,14 @@ class country_changed(QWidget):
         self.setMinimumSize(500, 300)
         self.file_name=file_name
         self.defult = read_contrylist(self.file_name)
-
+        # print(self.defult)
         self.open_test = None
         self.test_widget = test_widget
         self.layout = QGridLayout()
         self.btn_list=[]
 
         for i in range(0,len(self.defult)):
-            btn_temp=QPushButton('第%s个战斗方'%i)
+            btn_temp=QPushButton(list(self.defult)[i])
             self.btn_list.append(btn_temp)
             self.btn_list[i].clicked.connect(partial(self.change_combat,i))
             self.layout.addWidget(btn_temp,i/5,i%5)

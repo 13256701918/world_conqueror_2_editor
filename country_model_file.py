@@ -7,11 +7,12 @@ from  read_and_save import read,save,read_contrylist
 from PySide2.QtWidgets import *
 from PySide2.QtCore import *
 from functools import partial
-from other_rs import *
+from other_rs import get_armydef,get_commanderdef
 from remove_widget_file import remove_widget
 
 armydef_dic=get_armydef()
-print(commander_reserve_dic)
+commanderdef_dic=get_commanderdef()
+# print(commander_reserve_dic)
 class country_model(QWidget):
 	def __init__(self,parent=None,file_name='battle_axis1.xml',Number_Id=0):
 		super().__init__(parent)
@@ -39,7 +40,7 @@ class country_model(QWidget):
 		self.combobox_name.addItems(self.name)
 		self.combobox_name.setCurrentText(country_reverse_dic[self.defult['name']])
 		self.layout_name=QHBoxLayout()
-		self.info_name = info_button(self,info=armydef_dic[country_dic[self.combobox_name.currentText()]],info_type='armydef')
+		self.info_name = info_button(self,info=armydef_dic[country_dic[self.combobox_name.currentText()]] if country_dic[self.combobox_name.currentText()] in armydef_dic.keys() else armydef_dic['others'],info_type='armydef')
 		self.combobox_name.currentIndexChanged.connect(self.battle_country_name)
 
 		self.layout_name.addWidget(self.label_name)
@@ -54,10 +55,15 @@ class country_model(QWidget):
 		self.label_commander = QLabel('指挥官')
 		self.commander = list(commander_dic.keys())
 		self.combobox_commander.addItems(self.commander)
-		self.combobox_commander.setCurrentText(commander_reserve_dic[self.defult['commander']])
+		self.combobox_commander.setCurrentText(commander_reserve_dic[self.defult['commander']] if r'commander' in self.defult else commander_reserve_dic['common1'] )
 		self.layout_commander=QHBoxLayout()
+		self.button_info_commander = info_button(self,info=commanderdef_dic[commander_dic[self.combobox_commander.currentText()]],info_type='commanderdef')
+		self.combobox_commander.currentIndexChanged.connect(self.info_commander)
 		self.layout_commander.addWidget(self.label_commander)
 		self.layout_commander.addWidget(self.combobox_commander)
+		self.layout_commander.addWidget(self.button_info_commander)
+		self.layout_commander.setStretch(0,2)
+		self.layout_commander.setStretch(1,2)
 
 		self.combobox_ai = QComboBox()
 		self.label_ai = QLabel('电脑或玩家控制')
@@ -112,8 +118,8 @@ class country_model(QWidget):
 		for _ in ('a','b','g','r'):
 			self.defult_color[_]=self.defult[_]
 		self.combobox_color.setCurrentText(color_reverse_dic(self.defult_color))
-		print(self.defult_color)
-		print(color_reverse_dic(self.defult_color))
+		# print(self.defult_color)
+		# print(color_reverse_dic(self.defult_color))
 		self.color_map = {'r':int(color_dic[self.combobox_color.currentText()]['r']),
 								'g':int(color_dic[self.combobox_color.currentText()]['g']),
 								'b':int(color_dic[self.combobox_color.currentText()]['b']),
@@ -150,6 +156,14 @@ class country_model(QWidget):
 
 		self.info_name.info_change(info=self.temp_info,info_type='armydef')
 
+	def info_commander(self):
+		if commander_dic[self.combobox_commander.currentText()] in commander_dic.keys():
+			self.temp_info = commander_dic[commander_dic[self.combobox_commander.currentText()]]
+		else:
+			self.temp_info = commander_dic['others']
+
+		self.button_info_commander.info_change(info=self.temp_info,info_type='commanderdef')
+
 
 	def change_color(self):
 		self.color_map = {'r':int(color_dic[self.combobox_color.currentText()]['r']),
@@ -175,7 +189,7 @@ class country_model(QWidget):
 		self.defult['g'] = color_dic[self.combobox_color.currentText()]['g']
 		self.defult['r'] = color_dic[self.combobox_color.currentText()]['r']
 		# self.defult['name'] = self.combobox_color.currentText()
-		print(self.defult)
+		# print(self.defult)
 		# print(self.filename)
 		# print(self.number_id)
 		save(self.defult,self.file_name,self.number_id)
